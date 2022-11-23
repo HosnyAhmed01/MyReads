@@ -5,9 +5,8 @@ const BookShelfGhanger = ({book , changeShelf }) => {
     <div className="book-shelf-changer">
       <select onChange={(e) => { 
         changeShelf(book , e.target.value) 
-        console.log(book , e.target.value)
     }}>
-        <option value="none" >
+        <option value="none" disabled selected>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>

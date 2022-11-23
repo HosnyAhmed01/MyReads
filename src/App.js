@@ -25,14 +25,13 @@ function App() {
     
     SetBook([...newArray, {...object , shelf : newShelf}])
     bookapi.update(object , newShelf)
-    console.log(AllBooks)
   }
 
   return (
     <div className="app">
         <Routes>
           <Route excat path="/search" element={
-          <Search />
+          <Search changeShelf={handelBookShelf}/>
           }/>
           <Route excat path="/" element={
                <div className="list-books">
