@@ -8,8 +8,9 @@ const Search = ({changeShelf}) => {
 
 
   const searchFunc = async() => {
-      const res = await bookapi.search(searchQue , 10);
-      searchQue.length > 0 && setResults(res)
+        const res = await bookapi.search(searchQue , 10);
+        searchQue.length > 0 && setResults(res)
+        console.log(res) 
   }  
     return (
         <div className="search-books">
@@ -36,7 +37,7 @@ const Search = ({changeShelf}) => {
           <ol className="books-grid">
             {
                results.map((result) => {
-                return (<li key={result.id}>
+                 return result !== 'undefined' && (<li key={result.id}>
                   <div className="book">
                    <div className="book-top">
                    <div
@@ -45,7 +46,7 @@ const Search = ({changeShelf}) => {
                        width: 128,
                        height: 192,
                        backgroundImage:
-                         `url(${result.imageLinks.smallThumbnail})`,
+                         `url(${result.imageLinks ? result.imageLinks.smallThumbnail : ''})`,
                      }}
                    ></div>
                     <BookShelfGhanger book={result} changeShelf={changeShelf}/>
@@ -54,7 +55,7 @@ const Search = ({changeShelf}) => {
                  <div className="book-authors">{result.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
                  </div>
                 </li>)
-              }) 
+              })
             }
           </ol>
         </div>
