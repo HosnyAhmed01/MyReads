@@ -1,9 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import * as bookapi from './BooksAPI';
-import CurrentReading from "./componants/CurrentReads";
-import WantToRead from "./componants/WantToRead";
-import Read from "./componants/Read";
+import BookShelf from "./componants/BookShelf";
+// import WantToRead from "./componants/WantToRead";
+// import Read from "./componants/Read";
 import Search from "./componants/Search";
 import { Link, Route, Routes } from "react-router-dom";
 function App() {
@@ -40,9 +40,23 @@ function App() {
                </div>
                <div className="list-books-content">
                  <div>
-                   <CurrentReading allbooks={AllBooks.filter(book=> book.shelf === "currentlyReading")} changeShelf={handelBookShelf}/>  
-                   <WantToRead allbooks={AllBooks.filter(book=> book.shelf === "wantToRead")} changeShelf={handelBookShelf}/>
-                   <Read allbooks={AllBooks.filter(book=> book.shelf === "read")} changeShelf={handelBookShelf} />
+                   <BookShelf 
+                   allbooks={AllBooks.filter(book=> book.shelf === "currentlyReading")} 
+                   changeShelf={handelBookShelf}
+                   bookShelfName='Currently reading'
+                   />  
+
+                   <BookShelf 
+                   allbooks={AllBooks.filter(book=> book.shelf === "wantToRead")} 
+                   changeShelf={handelBookShelf}
+                   bookShelfName='want To Read'
+                   />
+
+                   <BookShelf
+                   allbooks={AllBooks.filter(book=> book.shelf === "read")} 
+                   changeShelf={handelBookShelf}
+                   bookShelfName='read'
+                   />
                  </div>
                </div>
                <div className="open-search">

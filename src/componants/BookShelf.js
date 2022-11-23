@@ -1,13 +1,15 @@
 import BookShelfGhanger from "./BookShelfChanger";
-const WantToRead = ({allbooks , changeShelf}) => {
-  return (
+
+const CurrentReading = ({ allbooks , changeShelf , bookShelfName}) => {
+
+   return (
     <div className="bookshelf">
-       <h2 className="bookshelf-title">Want To Read</h2>
+       <h2 className="bookshelf-title">{bookShelfName}</h2>
        <div className="bookshelf-books">
        <ol className="books-grid">
         {
           allbooks.map((book) => {
-             return  (
+             return (
                 <li key={book.id}>
                 <div className="book">
                  <div className="book-top">
@@ -20,7 +22,7 @@ const WantToRead = ({allbooks , changeShelf}) => {
                        `url(${book.imageLinks.smallThumbnail})`,
                    }}
                  ></div>
-                  <BookShelfGhanger book={book} changeShelf={changeShelf} />
+                  <BookShelfGhanger book={book} changeShelf={changeShelf} allbooks={allbooks}/>
                  </div>
                  <div className="book-title">{book.title}</div>
                <div className="book-authors">{book.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
@@ -37,4 +39,4 @@ const WantToRead = ({allbooks , changeShelf}) => {
 
 
 
-export default WantToRead;
+export default CurrentReading;
