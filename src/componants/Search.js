@@ -9,9 +9,13 @@ const Search = ({changeShelf}) => {
 
   const searchFunc = async() => {
         const res = await bookapi.search(searchQue , 10);
-        searchQue.length > 0 && setResults(res)
-        console.log(res) 
+        if (searchQue.length > 0 && res !== undefined) {
+          setResults(res)
+        } else {
+          setResults([])
+        }
   }  
+  
     return (
         <div className="search-books">
         <div className="search-books-bar">
@@ -28,7 +32,7 @@ const Search = ({changeShelf}) => {
               value={searchQue}
               onChange={(e) => {
                 setSearchQue(e.target.value)
-                searchFunc()
+                searchFunc()                
               }}
             />
           </div>
@@ -36,8 +40,8 @@ const Search = ({changeShelf}) => {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-               results.map((result) => {
-                 return result !== 'undefined' && (<li key={result.id}>
+             results !== [] && results.map((result) => {
+                 (<li key={result.id}>
                   <div className="book">
                    <div className="book-top">
                    <div
@@ -52,7 +56,7 @@ const Search = ({changeShelf}) => {
                     <BookShelfGhanger book={result} changeShelf={changeShelf}/>
                    </div>
                    <div className="book-title">{result.title}</div>
-                 <div className="book-authors">{result.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
+                 <div className="book-authors">{result.author && result.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
                  </div>
                 </li>)
               })
@@ -62,5 +66,7 @@ const Search = ({changeShelf}) => {
       </div>
     );
 }
+
+
 
 export default Search;

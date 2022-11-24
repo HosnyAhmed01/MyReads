@@ -6,13 +6,13 @@ const BookShelfGhanger = ({book , changeShelf }) => {
       <select value={book.shelf ? book.shelf : "none"} onChange={(e) => { 
         changeShelf(book , e.target.value) 
     }}>
-        <option value="none" disabled>
+        <option value="MoveTo" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>
         <option value="wantToRead">Want to Read</option>
         <option value="read">Read</option>
-        <option value="remove">remove</option>
+        <option value="none">none</option>
       </select>
     </div>
   );

@@ -25,7 +25,7 @@ const CurrentReading = ({ allbooks , changeShelf , bookShelfName}) => {
                   <BookShelfGhanger book={book} changeShelf={changeShelf} allbooks={allbooks}/>
                  </div>
                  <div className="book-title">{book.title}</div>
-               <div className="book-authors">{book.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
+               <div className="book-authors">{book.authors && book.authors.map((author => <p key={author}>{`< ${author} >`}</p>))}</div>
                </div>
               </li>
               )

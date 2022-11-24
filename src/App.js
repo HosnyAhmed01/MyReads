@@ -2,8 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import * as bookapi from './BooksAPI';
 import BookShelf from "./componants/BookShelf";
-// import WantToRead from "./componants/WantToRead";
-// import Read from "./componants/Read";
+import NotFound from "./componants/NotFound";
 import Search from "./componants/Search";
 import { Link, Route, Routes } from "react-router-dom";
 function App() {
@@ -33,6 +32,7 @@ function App() {
           <Route excat path="/search" element={
           <Search changeShelf={handelBookShelf}/>
           }/>
+          <Route path="*" element={<NotFound />} />
           <Route excat path="/" element={
                <div className="list-books">
                <div className="list-books-title">
