@@ -30,7 +30,7 @@ function App() {
     <div className="app">
         <Routes>
           <Route excat path="/search" element={
-          <Search changeShelf={handelBookShelf}/>
+          <Search changeShelf={handelBookShelf} allbooks={AllBooks}/>
           }/>
           <Route path="*" element={<NotFound />} />
           <Route excat path="/" element={

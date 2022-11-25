@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as bookapi from '../BooksAPI';
 import BookShelfGhanger from "./BookShelfChanger";
-const Search = ({changeShelf}) => {
+const Search = ({changeShelf , allbooks}) => {
   const [searchQue , setSearchQue] = useState('');
   const [results , setResults] = useState([]); 
 
@@ -18,9 +18,7 @@ const Search = ({changeShelf}) => {
         if (searchQue.length > 0 && res !== undefined) {
           setResults(res)
           contRef.current = null;
-        } else if (searchQue.length === 0) {
-          setResults([])
-        }else {
+        } else {
           setResults([])
         }
       } catch (e) {
@@ -53,6 +51,11 @@ const Search = ({changeShelf}) => {
           <ol className="books-grid">
             {
               results !== "undefiend" && results.map((result) => {
+
+                const bookOnShelf = allbooks.find(b => b.id === result.id)
+                if (bookOnShelf) {
+                  result.shelf = bookOnShelf.shelf
+                   }
                  return (<li key={result.id}>
                   <div className="book">
                    <div className="book-top">
