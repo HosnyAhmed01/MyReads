@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as bookapi from '../BooksAPI';
 import BookShelfGhanger from "./BookShelfChanger";
@@ -6,14 +6,24 @@ const Search = ({changeShelf}) => {
   const [searchQue , setSearchQue] = useState('');
   const [results , setResults] = useState([]); 
 
-
+  const contRef = useRef();
   const searchFunc = async() => {
+    if (contRef.current) {
+      contRef.current.abort();
+      }
+      const controller = new AbortController();
+      contRef.current = controller;
+      try {
         const res = await bookapi.search(searchQue , 10);
         if (searchQue.length > 0 && res !== undefined) {
           setResults(res)
+          contRef.current = null;
         } else {
           setResults([])
         }
+      } catch (e) {
+
+      }
   }  
   
     return (
@@ -40,7 +50,7 @@ const Search = ({changeShelf}) => {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-             results !== [] && results.map((result) => {
+              results.map((result) => {
                  (<li key={result.id}>
                   <div className="book">
                    <div className="book-top">
