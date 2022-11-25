@@ -51,7 +51,7 @@ const Search = ({changeShelf , allbooks}) => {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              results !== "undefiend" && results.map((result) => {
+              results !== "undefiend" && results.length > 0 && results.map((result) => {
 
                 const bookOnShelf = allbooks.find(b => b.id === result.id)
                 if (bookOnShelf) {
