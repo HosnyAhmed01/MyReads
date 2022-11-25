@@ -18,7 +18,9 @@ const Search = ({changeShelf}) => {
         if (searchQue.length > 0 && res !== undefined) {
           setResults(res)
           contRef.current = null;
-        } else {
+        } else if (searchQue.length === 0) {
+          setResults([])
+        }else {
           setResults([])
         }
       } catch (e) {
@@ -50,8 +52,8 @@ const Search = ({changeShelf}) => {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              results.map((result) => {
-                 (<li key={result.id}>
+              results !== "undefiend" && results.map((result) => {
+                 return (<li key={result.id}>
                   <div className="book">
                    <div className="book-top">
                    <div
