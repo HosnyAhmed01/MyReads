@@ -7,6 +7,6 @@
 3. remove a book from the main page
 ```
 ### Run the App
-1. clone the project 
-2. run ``` npm i ```
-3. run ``` npm start ```
+1. Clone or download the project
+2. Run ```npm install``` in the project root directory to install dependencies
+3. Run ```npm start``` to launch the project
